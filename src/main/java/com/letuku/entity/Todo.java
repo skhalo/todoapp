@@ -6,6 +6,7 @@ import javax.json.bind.annotation.JsonbDateFormat;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@NamedQuery(name = "ALL_TODOS", query = "select todo from Todo todo where todo.todoOwner.email = :email")
 public class Todo extends AbstractEntity {
 
     @NotEmpty(message = "A Todo task must be set")
