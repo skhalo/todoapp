@@ -14,12 +14,20 @@ public class PersistenceService {
     private EntityManager entityManager;
 
     public TodoUser saveTodoUser(TodoUser todoUser) {
-        entityManager.persist(todoUser);
+        if (todoUser.getId() != null) {
+            entityManager.merge(todoUser);
+        } else {
+            entityManager.persist(todoUser);
+        }
         return todoUser;
     }
 
     public Todo saveTodo(Todo todo){
-        entityManager.persist(todo);
+        if (todo.getId() != null){
+            entityManager.merge(todo);
+        } else {
+            entityManager.persist(todo);
+        }
         return todo;
     }
 }
