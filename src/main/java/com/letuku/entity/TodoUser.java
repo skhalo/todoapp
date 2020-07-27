@@ -14,11 +14,16 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "TodoUserTable")
 @Data
-@NamedQuery(name = "BY_EMAIL", query = "select tU from TodoUser tU where tU.email = :email")
-@NamedQuery(name = "ALL_TO_USERS", query = "select tU from TodoUser tU order by tU.fullName")
-@NamedQuery(name = "BY_ID", query = "select tU from TodoUser tU where tU.id = :id")
-@NamedQuery(name = "BY_NAME", query = "select tU from TodoUser tU where tU.fullName like :name")
+@NamedQuery(name = TodoUser.FIND_TO_DO_BY_EMAIL , query = "select tU from TodoUser tU where tU.email = :email")
+@NamedQuery(name = TodoUser.FIND_ALL_USERS, query = "select tU from TodoUser tU order by tU.fullName")
+@NamedQuery(name = TodoUser.FIND_BY_ID, query = "select tU from TodoUser tU where tU.id = :id")
+@NamedQuery(name = TodoUser.FIND_BY_NAME, query = "select tU from TodoUser tU where tU.fullName like :name")
 public class TodoUser extends AbstractEntity{
+
+    public static final String FIND_TO_DO_BY_EMAIL = "TodoUser.findByEmail";
+    public static final String FIND_ALL_USERS = "TodoUser.findAllUsers";
+    public static final String FIND_BY_ID = "TodoUser.findById";
+    public static final String FIND_BY_NAME = "TodoUser.findByName";
 
     @Column(length = 100)
     @NotEmpty(message = "An email must be set")
